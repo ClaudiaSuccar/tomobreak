@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+    <div id="main-ctn">
+        <div id="title-ctn">
+            <img id="icon" src="../content/tomato.svg" alt="tomato">
+            <h1 id="title">Tomo Break</h1>
+        </div>
+        <div id="prompt-ctn">
+            <p id="prompt" class="prompt-txt">
+                How long do you plan to work?
+            </p>
+            <div id="form-ctn">
+                <div class="input-inline">
+                    <label for="hours" class="prompt-txt">Hours: </label>
+                    <input id="hours" type="number" required name="hours" value="0">
+                    <label for="minutes" class="prompt-txt">Minutes: </label>
+                    <input id="minutes" type="number" required name="minutes" value="0"">
+                </div>
+            </div>
+        </div>
+        <div id="btn-ctn">
+            <a href="../index.html"><button class="btn" type="submit" onclick="resetProgress()">Back to menu</button></a>
+            <a id="pageLink" href="#"><button onclick="changeProgress()"  class="btn" type="submit">Next</button></a>
+        </div>
+    </div>
+    <script src="../index.js"></script>
+</body>
+</html>

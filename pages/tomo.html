@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+    <div id="main-ctn">
+        <div id="title-ctn">
+            <img id="icon" src="../content/tomato.svg" alt="tomato">
+            <h1 id="title">Tomo Break</h1>
+            <h2 id="timeDisplay" class="title-sub"></h2>
+            <h2 class="title-sub">Minutes left: <span id="time" style="color: tomato; font-size: large;">0</span></h2>
+            <h2 id="status" class="title-sub" style="color: tomato">Press 'Start Work' to begin!</h2>
+        </div>
+        <div id="btn-ctn">
+            <button id="startTimer" onclick="startWorkTimer()" class="btn" style="box-shadow: none;">Start work</button>
+            <button id="takeBreak" onclick="addItem()" class="btn-green">Take Break</button>
+            <button onclick="clearCollection()" class="btn" style="box-shadow: none;">Clear</button>
+            <a href="./prompt.html"><button class="btn-red">End</button></a>
+        </div>
+        <div id="collection-ctn">
+        </div>
+    </div>
+    <script src="../index.js"></script>
+</body>
+</html>
