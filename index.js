@@ -12,8 +12,8 @@ let setHours;
 let setMinutes;
 let recommendedBreaks = 0;
 let breakCount = 0;
-let workInterval = 25;
-let breakInterval = 5;
+let workInterval = 24;
+let breakInterval = 4;
 let setWorkCountdown;
 let setBreakCountdown;
 
@@ -196,42 +196,50 @@ function addItem() {
     document.getElementById("collection-ctn").appendChild(item);
     breakCount++;
     document.getElementById("numOfBreaks").innerText = `Number of breaks: ${breakCount} / ${recommendedBreaks}`;
+    if(breakInterval === 4) {
+        document.getElementById("time").innerText = 5;
+    } else {
+        document.getElementById("time").innerText = 15;
+    }
     startBreakTimer();
 }
 function workCountdown() {
-    while(workInterval >= 0) {
+    while(workInterval > 0) {
       document.getElementById("time").innerText = workInterval;
       workInterval--;
       return workInterval;
     }
+    document.getElementById("time").innerText = 0;
     breakAlert.play();
     clearInterval(setWorkCountdown);
-    workInterval = 25;
+    workInterval = 24;
     console.log(`Time reset to ${workInterval}`);
     return workInterval;
 }
 function startWorkTimer() {
     document.getElementById("status").style = "color: rgb(255, 132, 110);";
     document.getElementById("status").innerText = "WORKING...";
+    document.getElementById("time").innerText = 25;
     setWorkCountdown = setInterval(workCountdown, 60000);
 }
 function startBreakTimer() {
     setBreakCountdown = setInterval(breakCountdown, 60000);
 }
 function breakCountdown() {
-    while(breakInterval >= 0) {
+    while(breakInterval > 0) {
         document.getElementById("time").innerText = breakInterval;
         breakInterval--;
         return breakInterval;
     }
+    document.getElementById("time").innerText = 0;
     workAlert.play();
     clearInterval(setBreakCountdown);
     if (breakCount > 3) {
-        breakInterval = 15;
+        breakInterval = 14;
         console.log(`Time reset to ${breakInterval}`);
         return breakInterval;
     } else {
-        breakInterval = 5;
+        breakInterval = 4;
         console.log(`Time reset to ${breakInterval}`);
         return breakInterval;
     }
