@@ -298,10 +298,10 @@ function startWorkTimer() {
     document.getElementById("status").style = "color: rgb(255, 132, 110);";
     document.getElementById("status").innerText = "WORKING...";
     document.getElementById("time").innerText = 25;
-    setWorkCountdown = setInterval(workCountdown, 1000);
+    setWorkCountdown = setInterval(workCountdown, 60000);
 }
 function startBreakTimer() {
-    setBreakCountdown = setInterval(breakCountdown, 1000);
+    setBreakCountdown = setInterval(breakCountdown, 60000);
 }
 function breakCountdown() {
     while(breakInterval > 0) {
