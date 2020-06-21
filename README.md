@@ -1,2 +1,2 @@
 # tomobreak
-For work time-management.
+Time-management for work.
