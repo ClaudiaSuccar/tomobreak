@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <audio src="./content/confirm.mp3" id="confirmAlert"></audio>
     <audio src="./content/work.mp3" id="workAlert"></audio>
     <audio src="./content/break.mp3" id="breakAlert"></audio>
     <audio src="./content/success.mp3" id="successAlert"></audio>
     <audio src="./content/fail.mp3" id="failAlert"></audio>
+    <audio src="./content/pop.mp3" id="popNoise"></audio>
     <div id="main-ctn">
         <div id="title-ctn">
             <img id="icon" src="./content/tomato.svg" alt="tomato">
             <h1 id="title">Tomo Break</h1>
             <h4 class="title-sub">Welcome to Tomo Break, an app that rewards you for taking breaks!</h4>
         </div>
+        <!--
+        <div id="menu-ctn">
+            <button class="menu-btn" onclick="promptSetup()">Begin</button>
+            <button class="menu-btn" onclick="settingsSetup()">Settings</button>
+            <button class="menu-btn" onclick="aboutSetup()">About</button>
+        </div>
+        -->
     </div>
-    <script src="./index.js"></script>
+    <script src="./index.js" type="text/javascript"></script>
 </body>
 </html>

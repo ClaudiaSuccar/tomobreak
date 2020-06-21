@@ -5,6 +5,10 @@ let workAlert = document.getElementById("workAlert");
 let breakAlert = document.getElementById("breakAlert");
 let successAlert = document.getElementById("successAlert");
 let failAlert = document.getElementById("failAlert");
+let confirmAlert = document.getElementById("confirmAlert");
+let popNoise = document.getElementById("popNoise");
+let icon = document.getElementById("icon");
+
 
 //variables
 let pageCount = 0;
@@ -23,16 +27,32 @@ let menuContainer = document.createElement("div");
 mainContainer.appendChild(menuContainer);
 menuContainer.id = "menu-ctn";
 menuContainer.innerHTML = `
-<a href="#" onclick="promptSetup()"><button class="menu-btn">Begin</button></a>
-<a href="#" onclick="settingsSetup()"><button class="menu-btn">Settings</button></a>
-<a href="#" onclick="aboutSetup()"><button class="menu-btn">About</button></a>
+<button class="menu-btn" onclick="promptSetup()">Begin</button>
+<!--<button class="menu-btn" onclick="settingsSetup()">Settings</button>-->
+<button class="menu-btn" onclick="aboutSetup()">About</button>
 `;
 
+function drawIndex() {
+    mainContainer.innerHTML = `
+    <div id="title-ctn">
+        <img id="icon" src="./content/tomato.svg" alt="tomato">
+        <h1 id="title">Tomo Break</h1>
+        <h4 class="title-sub">Welcome to Tomo Break, an app that rewards you for taking breaks!</h4>
+        </div>
+    <div id="menu-ctn">
+        <button class="menu-btn" onclick="promptSetup()">Begin</button>
+        <!--<button class="menu-btn" onclick="settingsSetup()">Settings</button>-->
+        <button class="menu-btn" onclick="aboutSetup()">About</button>
+    </div>
+    `;
+}
 
 
 //prompt
 function promptSetup() {
+    let menuContainer = document.getElementById("menu-ctn");
     menuContainer.remove();
+    titleContainer.lastElementChild.innerText = "Enter the information below."
     let promptContainer = document.createElement("div");
     mainContainer.appendChild(promptContainer);
     promptContainer.id = "prompt-ctn";
@@ -66,6 +86,7 @@ function pageReload() {
 function changeProgress() {
     pageCount++;
     if (pageCount === 1) {
+        titleContainer.lastElementChild.remove();
         calculateBreaks(hours.value, minutes.value);
         document.getElementById("prompt").innerHTML = `Your recommended amount of breaks is <span style="color:tomato; font-weight:bold; font-size: x-large;">${recommendedBreaks}</span>. Try to reach this goal!\n\n Press 'start' when ready.`;
         document.getElementById("form-ctn").remove();
@@ -83,21 +104,20 @@ function changeProgress() {
         let promptContainer = document.createElement("div");
         mainContainer.appendChild(promptContainer);
         promptContainer.id = "prompt-ctn";
-        if (breakCount >= recommendedBreaks * .75) {
+        if (breakCount >= Math.round(recommendedBreaks * .75)) {
             successAlert.play();
             promptContainer.innerHTML = `
             <p id="emoji">&#129395;</p>
-            <p id="prompt" class="prompt-txt">You did it!</p>
-            <p class="prompt-txt">The recommended number of breaks was either reached or come close to successfully!</p>
-            <p class="prompt-txt">Continue to practice good time-management, for better mental hygiene and increased focus.</p>
+            <p id="prompt" class="prompt-txt" style="font-weight:bold">You did it!</p>
+            <p class="prompt-txt" style="text-align:center;">The recommended number of breaks was either reached or come close to successfully! Continue to practice good time-management, for better mental hygiene and increased focus.</p>
             `;
 
         } else {
             failAlert.play();
             promptContainer.innerHTML = `
             <p id="emoji">&#129301;</p>
-            <p id="prompt" class="prompt-txt">Try again next time!</p>
-            <p id="prompt" class="prompt-txt">You were unable to come close to the recommended number of breaks. Try again for better health and productivity.</p>
+            <p id="prompt" class="prompt-txt" style="font-weight:bold">Try again next time!</p>
+            <p id="prompt" class="prompt-txt" style="text-align:center;">You were unable to come close to the recommended number of breaks. Going long periods of work without taking breaks can have negative effects on your health and productivy.</p>
             `;
         }
         let buttonContainer = document.createElement("div");
@@ -127,19 +147,63 @@ function resetProgress() {
 
 
 //settings
-function setIcon() { //if you want to access iconSettings.value, do not assign it to variable 
+function settingsSetup() {
+    let titleContainer = document.getElementById("title-ctn");
+    let menuContainer = document.getElementById("menu-ctn");
+    titleContainer.innerHTML = `
+    <img id="icon" src="./content/tomato.svg" alt="tomato">
+    <h1 id="title">Tomo Break</h1>
+    <h4 class="title-sub">Settings</h4>
+    <h4 class="title-sub" id="clock">Clock</h4>
+    `;
+    menuContainer.innerHTML = `
+    <div class="input-inline">
+        <label for="iconSettings">Icon: </label>
+        <select name="iconSettings" id="iconSettings" onchange="setIcon()">
+            <option value="tomato">Tomato</option>
+            <option value="pear">Pear</option>
+            <option value="banana">Banana</option>
+        </select>
+    </div>
+    `;
+    let inputContainer = document.createElement("div");
+    menuContainer.appendChild(inputContainer);
+    inputContainer.innerHTML = `
+    <label for="timeSettings">Display Background: </label>
+    <select name="timeSettings" id="timeSettings" onchange="setTime()">
+        <option value="on">On</option>
+        <option value="off">Off</option>
+    </select>
+    `;
+    let buttonContainer = document.createElement("div");
+    mainContainer.appendChild(buttonContainer);
+    buttonContainer.id = "btn-ctn";
+    let backToMenu = document.createElement("button");
+    buttonContainer.appendChild(backToMenu);
+    backToMenu.classList.add("btn");
+    backToMenu.innerText = "Back to menu";
+    buttonContainer.addEventListener("click", drawIndex);
+}
+function setIcon() { 
+    icon = document.getElementById("icon");
     if (iconSettings.value === 'tomato') {
-        icon.src = '../content/tomato.svg';
+        icon.src = './content/tomato.svg';
         icon.classList.add('fade-in');
         icon.classList.add('fade-in');
+        console.log('tomato');
+        return icon.src;
     } else if (iconSettings.value === 'pear') {
-        icon.src = '../content/pear.svg';
+        icon.src = './content/pear.svg';
         icon.classList.add('fade-in');
         icon.classList.add('fade-in');
+        console.log('pear');
+        return icon.src;
     } else {
-        icon.src = '../content/banana.svg';
+        icon.src = './content/banana.svg';
         icon.classList.add('fade-in');
         icon.classList.add('fade-in');
+        console.log('banana');
+        return icon.src;
     }
 }
 function setTime() {
@@ -154,6 +218,7 @@ function setTime() {
 
 //tomo
 function tomoSetup() {
+    let titleContainer = document.getElementById("title-ctn");
     titleContainer.innerHTML = `
     <img id="icon" src="./content/tomato.svg" alt="tomato">
     <h1 id="title">Tomo Break</h1>
@@ -168,9 +233,9 @@ function tomoSetup() {
     mainContainer.appendChild(buttonContainer);
     buttonContainer.id = "btn-ctn";
     buttonContainer.innerHTML = `
-    <button id="startTimer" onclick="startWorkTimer()" class="btn" style="box-shadow: none;">Start work</button>
+    <button id="startTimer" onclick="startWorkTimer()" class="btn" style="box-shadow: none;">Start Work</button>
     <button id="takeBreak" onclick="addItem()" class="btn-green">Take Break</button>
-    <button onclick="clearCollection()" class="btn" style="box-shadow: none;">Clear</button>
+    <!--<button onclick="clearCollection()" class="btn" style="box-shadow: none;">Clear</button>-->
     <button id="endButton" class="btn-red">End</button>
     `;
     document.getElementById("endButton").addEventListener("click", changeProgress);
@@ -179,14 +244,27 @@ function tomoSetup() {
     collectionContainer.id = "collection-ctn";
 }
 function clearCollection() {
+    let status = document.getElementById("status");
+    let currentStatus = status.innerText;
+    console.log(currentStatus);
+    failAlert.play();
     if(confirm("Are you sure?") === true) {
-        breakCount = 0;
-        document.getElementById("numOfBreaks").innerText = `Number of breaks: ${breakCount} / ${recommendedBreaks}`
-        document.getElementById("collection-ctn").innerHTML = '';
-
+        confirmAlert.play();
+        if(currentStatus === "ON BREAK...") {
+            breakCount--;
+            document.getElementById("numOfBreaks").innerHTML = `Number of breaks: ${breakCount} / ${recommendedBreaks}`;
+        }
+        document.getElementById("time").innerText = 0;
+        clearInterval(setBreakCountdown);
+        clearInterval(setWorkCountdown);
+        //breakCount = 0;
+        //document.getElementById("numOfBreaks").innerText = `Number of breaks: ${breakCount} / ${recommendedBreaks}`
+        //document.getElementById("collection-ctn").innerHTML = '';
+        return breakCount;
     }
 }
 function addItem() {
+    popNoise.play();
     document.getElementById("status").style = "color: rgb(168, 255, 81);";
     document.getElementById("status").innerText = "ON BREAK...";
     let item = document.createElement("img");
@@ -220,10 +298,10 @@ function startWorkTimer() {
     document.getElementById("status").style = "color: rgb(255, 132, 110);";
     document.getElementById("status").innerText = "WORKING...";
     document.getElementById("time").innerText = 25;
-    setWorkCountdown = setInterval(workCountdown, 60000);
+    setWorkCountdown = setInterval(workCountdown, 1000);
 }
 function startBreakTimer() {
-    setBreakCountdown = setInterval(breakCountdown, 60000);
+    setBreakCountdown = setInterval(breakCountdown, 1000);
 }
 function breakCountdown() {
     while(breakInterval > 0) {
@@ -243,4 +321,40 @@ function breakCountdown() {
         console.log(`Time reset to ${breakInterval}`);
         return breakInterval;
     }
+}
+
+
+
+//about
+function aboutSetup() {
+    let titleContainer = document.getElementById("title-ctn");
+    titleContainer.lastElementChild.remove();
+    let menuContainer = document.getElementById("menu-ctn");
+    menuContainer.remove();
+    let promptContainer = document.createElement("div");
+    mainContainer.append(promptContainer);
+    promptContainer.id = "prompt-ctn";
+    promptContainer.innerHTML = `
+    <div class="input-inline">
+        <img src="./content/clock.svg" alt="tomato">
+    </div>
+    <p class="about-txt">
+    <ul>
+        <li style="font-weight: bold;">How to use it?</li>
+        <br>
+        <p>Use the 'Start work' and 'Take break' button to activate timers that will alert you when it's time to move on to the next task. Try to reach the recommended number of breaks and keep track of how many tomatoes it takes to get the job done.</p>
+        <br>
+        <li style="font-weight: bold;">What is it about?</li>
+        <br>
+        <p>Tomo Break is inspired by Fancesco Cirillo's Pomodoro Technique. Find out more <a href="https://francescocirillo.com" target="_blank">here</a>.</p>
+    </ul>
+    `;
+    let buttonContainer = document.createElement("div");
+    mainContainer.appendChild(buttonContainer);
+    buttonContainer.id = "btn-ctn";
+    let backToMenu = document.createElement("button");
+    buttonContainer.appendChild(backToMenu);
+    backToMenu.classList.add("btn");
+    backToMenu.innerText = "Back to menu";
+    backToMenu.addEventListener("click", drawIndex);
 }
