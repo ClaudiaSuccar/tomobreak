@@ -100,7 +100,7 @@ body {
 .prompt-txt {
     font-family: inherit;
     font-size: large;
-    color: rgb(91, 91, 121);
+    color: rgb(56, 56, 56);
 }
 
 .about-txt {
@@ -109,11 +109,6 @@ body {
     color: rgb(56, 56, 56);
     font-size: medium;
     line-height: 25px;
-}
-
-.mini-icon {
-    transform: scale(.5);
-    margin: -20px;
 }
 
 @keyframes prompt {
@@ -397,6 +392,7 @@ p a:hover {
         margin-top: -50px;
     }
 }
+
 
 @media (max-width: 1024px) {
     #collection-item {
