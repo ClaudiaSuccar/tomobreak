@@ -276,6 +276,7 @@ function addItem() {
     let item = document.createElement("img");
     item.src = "./content/tomato.svg";
     item.alt = "itemName";
+    item.id = "collection-item";
     item.classList.add("pop");
     document.getElementById("collection-ctn").appendChild(item);
     breakCount++;
@@ -342,17 +343,15 @@ function aboutSetup() {
     promptContainer.id = "prompt-ctn";
     promptContainer.innerHTML = `
     <div class="input-inline">
-        <img src="./content/clock.svg" alt="tomato">
+        <img src="./content/clock.svg" class="mini-icon" alt="tomato">
     </div>
     <p class="about-txt">
     <ul>
-        <li style="font-weight: bold;">How to use it?</li>
+        <li style="font-weight: bold;" class="about-txt">How to use it?</li>
+        <p class="about-txt">Use the 'Start work' and 'Take break' button to activate timers that will alert you when it's time to move on to the next task. Try to reach the recommended number of breaks and keep track of how many tomatoes it takes to get the job done.</p>
         <br>
-        <p>Use the 'Start work' and 'Take break' button to activate timers that will alert you when it's time to move on to the next task. Try to reach the recommended number of breaks and keep track of how many tomatoes it takes to get the job done.</p>
-        <br>
-        <li style="font-weight: bold;">What is it about?</li>
-        <br>
-        <p>Tomo Break is inspired by Francesco Cirillo's Pomodoro Technique. Find out more <a href="https://francescocirillo.com" target="_blank">here</a>.</p>
+        <li style="font-weight: bold;" class="about-txt">What is it about?</li>
+        <p class="about-txt">Tomo Break is inspired by Francesco Cirillo's Pomodoro Technique. Find out more <a href="https://francescocirillo.com" target="_blank">here</a>.</p>
     </ul>
     `;
     let buttonContainer = document.createElement("div");

@@ -69,7 +69,7 @@ body {
 
 #main-ctn {
     height: auto;
-    width: 36%;
+    width: 50%;
     background-color: rgb(198, 198, 240);
     display: flex;
     flex-direction: column;
@@ -141,6 +141,7 @@ body {
 }
 
 .btn {
+    background-color: #eee;
     font-size: large;
     font-family: inherit;
     padding: 2px 15px;
@@ -214,18 +215,19 @@ body {
     background-color: rgb(129, 129, 168);
     border-radius: 8px;
     height: 50%;
-    width: 60%;
+    width: 70%;
     box-shadow: inset 0 0 10px rgb(91, 91, 129);
     font-family: inherit;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 3%;
 }
 
 .menu-btn {
+    background-color: #eee;
     font-size: xx-large;
     font-family: inherit;
     padding: 5px 50px;
@@ -319,7 +321,7 @@ p a:hover {
 @media (max-width: 414px) {
     body {
         width: 100vw;
-        height: 97vh;
+        height: 100vh;
         background-color: blue;
     }
 
@@ -332,6 +334,7 @@ p a:hover {
     #title-ctn {
         width: 90%;
         height: 20%;
+        margin-bottom: 10px;
     }
 
     #title {
@@ -339,19 +342,44 @@ p a:hover {
     }
     
     #prompt-ctn {
-        height: 30%;
-        width: 90%;
+        height: 50%;
+        width: 80%;
+    }
+
+    .about-txt {
+        font-size: x-small;
     }
 
     #btn-ctn {
-        width: 100%;
+        margin-top: 20px;
+        width: 85%;
         display: flex;
+    }
+
+    .prompt-txt {
+        font-size: x-small;
+    }
+
+    #emoji {
+        font-size: 50px;
     }
 
     #menu-ctn {
         height: 30%;
         width: 90%;
-        margin-top: 30px;
+        margin-top: 40px;
+    }
+
+    #collection-item {
+        height: 50px;
+        width: 50px;
+    }
+
+    #collection-ctn {
+        grid-template-columns: repeat(auto-fill, 50px);
+        grid-gap: 2px;
+        height: auto;
+        width: 80%;
     }
 
     label {
@@ -360,12 +388,26 @@ p a:hover {
     }
 
     .about-txt {
-        font-size: xx-small;
-        line-height: normal;
+        font-size: 13px;
+        line-height: 15px;
     }
 
     .mini-icon {
-        transform: scale(.4);
+        transform: scale(.5);
         margin: -20px;
+        margin-top: -50px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #collection-item {
+        height: 70px;
+        width: 70px;
+    }
+    #collection-ctn {
+        grid-template-columns: repeat(auto-fill, 70px);
+    }
+    #main-ctn {
+        width: 70%;
     }
 }
