@@ -33,6 +33,10 @@ menuContainer.innerHTML = `
 `;
 
 function drawIndex() {
+    let buttonContainer = document.getElementById("btn-ctn");
+    buttonContainer.remove();
+    let promptContainer = document.getElementById("prompt-ctn");
+    promptContainer.remove();
     mainContainer.innerHTML = `
     <div id="title-ctn">
         <img id="icon" src="./content/tomato.svg" alt="tomato">
@@ -52,6 +56,7 @@ function drawIndex() {
 function promptSetup() {
     let menuContainer = document.getElementById("menu-ctn");
     menuContainer.remove();
+    let titleContainer = document.getElementById("title-ctn");
     titleContainer.lastElementChild.innerText = "Enter the information below."
     let promptContainer = document.createElement("div");
     mainContainer.appendChild(promptContainer);
@@ -86,6 +91,7 @@ function pageReload() {
 function changeProgress() {
     pageCount++;
     if (pageCount === 1) {
+        let titleContainer = document.getElementById("title-ctn");
         titleContainer.lastElementChild.remove();
         calculateBreaks(hours.value, minutes.value);
         document.getElementById("prompt").innerHTML = `Your recommended amount of breaks is <span style="color:tomato; font-weight:bold; font-size: x-large;">${recommendedBreaks}</span>. Try to reach this goal!\n\n Press 'start' when ready.`;
