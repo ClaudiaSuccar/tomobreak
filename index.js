@@ -346,7 +346,7 @@ function aboutSetup() {
         <br>
         <li style="font-weight: bold;">What is it about?</li>
         <br>
-        <p>Tomo Break is inspired by Fancesco Cirillo's Pomodoro Technique. Find out more <a href="https://francescocirillo.com" target="_blank">here</a>.</p>
+        <p>Tomo Break is inspired by Francesco Cirillo's Pomodoro Technique. Find out more <a href="https://francescocirillo.com" target="_blank">here</a>.</p>
     </ul>
     `;
     let buttonContainer = document.createElement("div");
