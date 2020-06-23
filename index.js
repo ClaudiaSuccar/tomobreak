@@ -123,7 +123,7 @@ function changeProgress() {
             promptContainer.innerHTML = `
             <p id="emoji">&#129301;</p>
             <p id="prompt" class="prompt-txt" style="font-weight:bold">Try again next time!</p>
-            <p id="prompt" class="prompt-txt" style="text-align:center;">You were unable to come close to the recommended number of breaks. Going long periods of work without taking breaks can have negative effects on your health and productivy.</p>
+            <p id="prompt" class="prompt-txt" style="text-align:center;">You were unable to come close to the recommended number of breaks. Going long periods of work without taking breaks can have negative effects on your health and productivity.</p>
             `;
         }
         let buttonContainer = document.createElement("div");
